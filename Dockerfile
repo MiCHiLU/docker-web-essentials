@@ -6,6 +6,12 @@ ENV \
   PATH="$HOME/node_modules/.bin:$PATH"
 WORKDIR $HOME
 
+# for Ruby gem
+ADD gemrc /etc/
+# pre install
+ADD Gemfile $HOME/
+ADD package.json $HOME/
+
 # curl needed by the steps on Wercker CI
 # ruby, ruby-dev, and ruby-io-console needed by gem
 RUN apk --no-cache --update add \
@@ -24,7 +30,6 @@ RUN apk --no-cache --update add \
   ;
 
 # for Ruby gem
-ADD gemrc /etc/
 RUN gem install \
   bundler \
   && rm -r $HOME/.gem \
@@ -42,8 +47,6 @@ RUN gem install \
   ;
 
 # pre install
-ADD Gemfile $HOME/
-ADD package.json $HOME/
 RUN \
   npm instal \
   && rm package.json \
