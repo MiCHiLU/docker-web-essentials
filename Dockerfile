@@ -19,6 +19,8 @@ RUN apk --no-cache --update add \
   ruby-dev \
   ruby-io-console \
   sudo \
+# for Python PIP
+  && curl -s https://bootstrap.pypa.io/get-pip.py | python \
   ;
 
 # for Ruby gem
@@ -39,9 +41,6 @@ RUN apk --no-cache --update add --virtual=build-time-only \
   && find / -type f -name "*.gem" -delete \
   && apk del build-time-only \
   ;
-
-# for Python PIP
-RUN curl -s https://bootstrap.pypa.io/get-pip.py | python
 
 # pre install
 ADD Gemfile $HOME/
