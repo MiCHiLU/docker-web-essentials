@@ -1,9 +1,7 @@
 FROM mhart/alpine-node-auto:0.10
 
-# bash needed by the steps on Wercker CI
 # ruby, ruby-dev, and ruby-io-console needed by gem
 RUN apk --no-cache --update add \
-  bash \
   git \
   make \
   python \
