@@ -27,10 +27,8 @@ RUN apk --no-cache --update add \
   sudo \
 # for Python PIP
   && curl -s https://bootstrap.pypa.io/get-pip.py | python \
-  ;
-
 # for Ruby gem
-RUN gem install \
+  && gem install \
   bundler \
   && rm -r $HOME/.gem \
   && find / -type f -name "*.gem" -delete \
@@ -44,11 +42,8 @@ RUN gem install \
   && rm -r $HOME/.gem \
   && find / -type f -name "*.gem" -delete \
   && apk del build-time-only \
-  ;
-
 # pre install
-RUN \
-  npm instal \
+  && npm instal \
   && rm package.json \
   && bundle install \
   && rm Gemfile* \
