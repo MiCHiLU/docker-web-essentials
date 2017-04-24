@@ -3,7 +3,7 @@ FROM mhart/alpine-node-auto:0.10
 ENV \
   HOME="/root" \
   LC_CTYPE="C.utf8" \
-  PATH="$HOME/node_modules/.bin:$PATH"
+  PATH="/root/node_modules/.bin:$PATH"
 WORKDIR $HOME
 
 # for Ruby gem
