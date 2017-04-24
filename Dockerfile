@@ -1,7 +1,9 @@
 FROM mhart/alpine-node-auto:0.10
 
+# curl needed by the steps on Wercker CI
 # ruby, ruby-dev, and ruby-io-console needed by gem
 RUN apk --no-cache --update add \
+  curl \
   git \
   make \
   python \
@@ -38,11 +40,7 @@ RUN apk --no-cache --update add --virtual=build-time-only \
   ;
 
 # for Python PIP
-RUN apk --no-cache --update add --virtual=build-time-only \
-  curl \
-  && curl -s https://bootstrap.pypa.io/get-pip.py | python \
-  && apk del build-time-only \
-  ;
+RUN curl -s https://bootstrap.pypa.io/get-pip.py | python
 
 # pre install
 ADD Gemfile $HOME/
