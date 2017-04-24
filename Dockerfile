@@ -1,5 +1,11 @@
 FROM mhart/alpine-node-auto:0.10
 
+ENV \
+  HOME="/root" \
+  LC_CTYPE="C.utf8" \
+  PATH="$HOME/node_modules/.bin:$PATH"
+WORKDIR $HOME
+
 # curl needed by the steps on Wercker CI
 # ruby, ruby-dev, and ruby-io-console needed by gem
 RUN apk --no-cache --update add \
@@ -14,11 +20,6 @@ RUN apk --no-cache --update add \
   ruby-io-console \
   sudo \
   ;
-
-ENV \
-  HOME="/root" \
-  LC_CTYPE="C.utf8"
-WORKDIR $HOME
 
 # for Ruby gem
 ADD gemrc /etc/
@@ -51,8 +52,6 @@ RUN \
   && bundle install \
   && rm Gemfile* \
   ;
-
-ENV PATH="$HOME/node_modules/.bin:$PATH"
 
 CMD echo "print versions..."\
   && coffee --version \
