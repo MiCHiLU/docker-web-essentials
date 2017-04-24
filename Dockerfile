@@ -12,9 +12,10 @@ ADD gemrc /etc/
 ADD Gemfile $HOME/
 ADD package.json $HOME/
 
-# curl needed by the steps on Wercker CI
+# bash and curl needed by the steps on Wercker CI
 # ruby, ruby-dev, and ruby-io-console needed by gem
 RUN apk --no-cache --update add \
+  bash \
   curl \
   git \
   make \
