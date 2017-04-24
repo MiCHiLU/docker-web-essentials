@@ -29,9 +29,8 @@ RUN gem install \
   bundler \
   && rm -r $HOME/.gem \
   && find / -type f -name "*.gem" -delete \
-  ;
 # gcc and libc-dev libffi-dev needed by gem install ffi
-RUN apk --no-cache --update add --virtual=build-time-only \
+  && apk --no-cache --update add --virtual=build-time-only \
   gcc \
   libc-dev \
   libffi-dev \
