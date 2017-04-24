@@ -1,2 +1,4 @@
 :ssl_verify_mode: 0
 gem: --no-rdoc --no-ri
+install: --no-document
+update: --no-document
